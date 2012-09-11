@@ -1,4 +1,3 @@
-
 function CoordinateGrid(buildFunc) {
 
 	var t = this;
@@ -17,14 +16,22 @@ function CoordinateGrid(buildFunc) {
 		var rowCnt = rows.length;
 		var colCnt = cols.length;
 		var i, r=-1, c=-1;
+
+		var scrollTopOffset = 0;
+	    	var scrollLeftOffset = 0;
+		if ($(".fc-grid")[0]) {
+		    scrollTopOffset = $(".fc-grid").scrollTop();
+		    scrollLeftOffset = $(".fc-grid").scrollLeft();
+		}
+
 		for (i=0; i<rowCnt; i++) {
-			if (y >= rows[i][0] && y < rows[i][1]) {
+			if (y + scrollTopOffset >= rows[i][0] && y + scrollTopOffset < rows[i][1]) {
 				r = i;
 				break;
 			}
 		}
 		for (i=0; i<colCnt; i++) {
-			if (x >= cols[i][0] && x < cols[i][1]) {
+			if (x + scrollLeftOffset >= cols[i][0] && x + scrollLeftOffset < cols[i][1]) {
 				c = i;
 				break;
 			}
